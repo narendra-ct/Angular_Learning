@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { OfferTypes } from '../../models/OfferTypes'
 
 import * as d3 from "d3";
-import {NgbdModalBasic} from '../modal-basic'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -25,8 +24,8 @@ export class WelcomeComponent implements OnInit {
 
 
     closeResult: string;
-    @ViewChild('content') content;
-  constructor(private modalService: NgbModal) { 
+    @ViewChild('content',{read:"",static:false}) content: ElementRef;
+    constructor(private modalService: NgbModal) { 
 
   }
 
@@ -160,17 +159,17 @@ export class WelcomeComponent implements OnInit {
               return "rotate(" + i(t) + ")";
             };
           }
-        
+
   }
 
 
   showModalOnSelectedOffer() {
-        this.open(null)
+    this.open(this.content);
   }
 
   open(content) {
-    console.log(this.content)
-    this.modalService.open(this.content, {centered: true,windowClass: 'custom-class'}).result.then((result) => {
+    console.log(content)
+    this.modalService.open(content, {centered: true,windowClass: 'custom-class'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -186,6 +185,15 @@ export class WelcomeComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
+
+
+//MARK: SHARE ACTIONS
+didTapShare() {
+  
+}
+
+
 }
 
 

@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './welcome/welcome.component'; 
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbdModalBasic} from './modal-basic'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 
 
@@ -15,7 +14,6 @@ import {NgbdModalBasic} from './modal-basic'
   declarations: [
     AppComponent,
     WelcomeComponent,
-    NgbdModalBasic
   ],
   imports: [
     BrowserModule,

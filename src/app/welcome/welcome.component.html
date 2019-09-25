@@ -2,10 +2,46 @@
  
 <div id="chart"></div>
 
-<div id="selection" *ngIf="selectedOffer.length > 0">
+<!-- <div id="selection" *ngIf="selectedOffer.length > 0">
   Looks like you got {{selectedOffer}}
-</div>
+</div> -->
 
-<!-- <ngbd-modal-basic> </ngbd-modal-basic> -->
+<ng-template #content let-modal>
+    <!-- <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Modal update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> -->
+  <div class="modal-body">
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+      <div class="card" style="background: blanchedalmond;">
+          <div class="card-body">
+              <h5 class="card-title tilteCss" >#SparSpinAndWin</h5>
+              <h6 class="card-subtitle mb-2" style="text-align: center;padding-bottom: 5px;">Well done!</h6>
+              <p class="card-text" style="text-align:center">You have entered lucky draw to win </p>
+              <p class="card-text" style="text-align:center;font-size: larger;font-style: oblique;font-weight: 700;">1 Lakh" </p>
+
+              <div>
+                <p style="text-align: center"> Winners can collect or reedem offer on SPAR Store at VR Mall</p>
+              </div>
+
+              <p class="card-subtitle mb-2 text-muted"  style="text-align: center;font-size: 10px"> Tweet or Share to eligible for bounty</p>
+
+
+              <div style="text-align: center;text-decoration: underline;">
+                  <img src="../../assets/twitter.png" style="vertical-align:middle" />
+                  <span style="vertical-align:middle" (click)="didTapShare()">#SparSpinAndWin</span>
+              </div>
+
+          </div>
+        </div>
+
+  </div>
+
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
