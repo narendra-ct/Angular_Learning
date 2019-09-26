@@ -24,7 +24,7 @@ export class SpinwheelComponent implements OnInit {
     {'label': "10% Off",  'prob': 1, 'dealType': this.DEAL_DISCOUNT}, 
     {'label': "15% Off",  'prob': 1, 'dealType': this.DEAL_DISCOUNT}, 
     {'label':'Gift Box',  'prob': 1, 'dealType': this.DEAL_GIFT_BOX},
-    {'label': "Diwali Vourcher",  'prob': 1, 'dealType': this.DEAL_VOUCHER}, 
+    {'label': "Diwali Voucher",  'prob': 1, 'dealType': this.DEAL_VOUCHER}, 
     {'label': "JACKPOT",  'prob': 1, 'dealType': this.DEAL_JACKPOT},
     {'label': "Better Luck",  'prob': 1, 'dealType': this.DEAL_NO_DEAL},
     {'label': "Upto 30% Off",  'prob': 1, 'dealType': this.DEAL_DISCOUNT},
