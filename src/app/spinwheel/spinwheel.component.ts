@@ -48,9 +48,9 @@ export class SpinwheelComponent implements OnInit {
   }
 
   drawWheel(){
-    var padding = {top: 20, right: 16, bottom: 0, left: 16};
+    var padding = {top: 0, right: 16, bottom: 0, left: 16};
 
-    var w = 360 - padding.left - padding.right;
+    var w = 320 - padding.left - padding.right;
     var h = 550 - padding.top  - padding.bottom;
     var r = Math.min(w, h) / 2;
     var picked: number = 999999;

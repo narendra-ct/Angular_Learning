@@ -31,7 +31,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     ShareModule,
     FontAwesomeModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
