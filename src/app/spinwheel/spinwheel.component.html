@@ -1,0 +1,92 @@
+
+ 
+ <p style="text-align: center;font-weight: bold;color: green;">Spin & Win Contest!</p>
+ <p style="padding: 8px;font-size: 12px;"><b>Instructions:</b> To play the game click on spin and win exciting deals to redeem instore</p>
+
+<div id="chart" style="margin-top: -100px;"></div>
+
+<!-- <div id="selection" *ngIf="selectedOffer.length > 0">
+  Looks like you got {{selectedOffer}}
+</div> -->
+
+<ng-template #content let-modal>
+    <!-- <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Modal update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> -->
+  <div class="modal-body">
+
+      <div class="card" style="background: blanchedalmond;">
+          <div class="card-body">
+              <h5 class="card-title tilteCss" >#SparSpinAndWin</h5>
+              <h6 class="card-subtitle mb-2" style="text-align: center;padding-bottom: 5px;">{{spinTitle}}</h6>
+              <p class="card-text" style="text-align:center">{{spinSubtitle}}</p>
+              <p class="card-text" style="text-align:center;font-size: larger;font-style: oblique;font-weight: 700;">{{spinOfferLabel}} </p>
+
+              <div>
+                <p style="text-align: center"> {{spinCollectOfferLabel}}</p>
+              </div>
+
+              <p class="card-subtitle mb-2 text-muted"  style="text-align: center;font-size: 10px"> Tweet or Share to eligible for bounty</p>
+
+              <div style="text-align: center;text-decoration: underline;">
+                  <img src="../../assets/twitter.png" style="vertical-align:middle" />
+                  <span style="vertical-align:middle" (click)="didTapShare()">#SparSpinAndWin</span>
+              </div>
+          </div>
+
+        </div>
+
+  </div>
+
+  
+  <div>
+
+<!-- Add font awesome icons -->
+
+<!-- <button shareButton="twitter"> Twitter </button> -->
+    <!-- <share-button button="twitter">Tweet</share-button> -->
+
+    <!-- <share-button button="facebook" [icon]="fbIcon"></share-button>
+<share-button button="twitter" [icon]="tweetIcon"></share-button>
+<share-button button="pinterest" [icon]="pinIcon"></share-button> -->
+
+
+    <!-- <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
+        <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+      </button> -->
+
+    <!-- <button mat-icon-button shareButton="facebook" #fbBtn [style.color]="share.prop.facebook.color">
+      <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+      </button> -->
+
+
+      <!-- <button mat-icon-button shareButton="whatsapp" #wtsBtn [style.color]="share.prop.whatsapp.color">
+        <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
+      </button> -->
+      
+    <!-- 
+    <button mat-icon-button shareButton="twitter" #twtBtn [style.color]="share.prop.twitter.color">
+      <fa-icon [icon]="share.prop.twitter.icon" size="lg"></fa-icon>
+    </button>
+    <button mat-icon-button shareButton="linkedin" #inBtn [style.color]="share.prop.linkedin.color">
+      <fa-icon [icon]="share.prop.linkedin.icon" size="lg"></fa-icon>
+    </button>
+    <button mat-icon-button shareButton="whatsapp" #wtsBtn [style.color]="share.prop.whatsapp.color">
+      <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
+    </button>
+    <button mat-icon-button shareButton="telegram" #teleBtn [style.color]="share.prop.telegram.color">
+      <fa-icon [icon]="share.prop.telegram.icon" size="lg"></fa-icon>
+    </button>
+    <button mat-icon-button shareButton="pinterest" #pinBtn [style.color]="share.prop.pinterest.color">
+      <fa-icon [icon]="share.prop.pinterest.icon" size="lg"></fa-icon>
+    </button>
+    You can get the official colors and icons by injecting ShareButtons service in your com -->
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>

@@ -1,12 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WelcomeComponent } from './welcome/welcome.component'; 
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SpinwheelComponent } from './spinwheel/spinwheel.component'
+
+import { ShareModule } from '@ngx-share/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
 
 
 
@@ -14,12 +21,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
   declarations: [
     AppComponent,
     WelcomeComponent,
+    SpinwheelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ShareModule,
+    FontAwesomeModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
