@@ -11,6 +11,17 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class SpinwheelComponent implements OnInit {
 
+
+  // sharing feature links
+  portalURL = "https://www.stg1.bosch-iero.com/retailgamecontest"
+  // whatsappShare =  "whatsapp://send?text=720kb%20is%20enough%20http%3A%2F%2F720kb.net"
+  whatsappShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest"
+  mailShare = "mailto:?Subject=Shop With SPAR&body= Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest"
+  smsShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest"
+  twitterShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box.\n\n"
+  hashtags  = "ShopWithSpar,SparSpinAndWin"
+
+
   DEAL_DISCOUNT = 'discount'
   DEAL_GIFT_BOX = 'giftbox'
   DEAL_JACKPOT  = 'jackpot'
@@ -40,6 +51,9 @@ export class SpinwheelComponent implements OnInit {
 
     @ViewChild('content',{read:"",static:false}) content: ElementRef;
     constructor(private modalService: NgbModal) { 
+
+      // this.whatsappShare = encodeURI(this.whatsappShare)
+      // console.log(this.whatsappShare)
 
   }
 
@@ -111,23 +125,20 @@ export class SpinwheelComponent implements OnInit {
               self.selectedOffer = null
  
               var  ps       = 360/self.data.length,
-                   pieslice = 50000,
+                   pieslice = 10000,
                    rng      = Math.floor((Math.random() * pieslice) + 360);
                   
               rotation = (Math.round(rng / ps) * ps);
               
               picked = Math.round(self.data.length - (rotation % 360)/ps);
               picked = picked >= self.data.length ? (picked % self.data.length) : picked;
-
-              console.log("picked "+picked)
-
               // if (picked != 7) {
               //   d3.select(this).call(spin);
               // }
 
               rotation += 90 - Math.round(ps/2);
               vis.transition()
-                  .duration(4000)
+                  .duration(4500)
                   .attrTween("transform", rotTween)
                   .on("end", function(){
                       //populate question

@@ -32,13 +32,13 @@
               <p class="card-subtitle mb-2 text-muted"  style="text-align: center;font-size: 10px"> Tweet or Share to eligible for bounty</p>
 
               <div style="text-align: center;text-decoration: underline;">
-                  <img src="assets/twitter.png" style="vertical-align:middle" />
-                  <span style="vertical-align:middle" (click)="didTapShare()">#SparSpinAndWin</span>
+                  <img src="assets/share.png" style="vertical-align: middle;height: 20px;width: 20px;" />
+                  <span style="vertical-align:middle" (click)="didTapShare()">#ShopWithSpar</span>
               </div>
           </div>
 
-          <!-- <div style="display: block; margin: auto; margin-top: -10px;">
-              <a class="btn btn-social-icon btn-twitter" href="https://www.twitter.com/intent/tweet?url=https://www.youtube.com/watch?v=U5QQrlcJgh8&text=SAMPLE&via=NarenndraReddy_V" target="_blank">
+          <div style="display: block; margin: auto; margin-top: -10px;">
+              <a class="btn btn-social-icon btn-twitter" href="https://www.twitter.com/intent/tweet?url={{portalURL}}&text={{twitterShare}}&hashtags={{hashtags}}" target="_blank">
                   <span class="fa fa-twitter"></span>
               </a>
 
@@ -50,18 +50,19 @@
                   <span class="fa fa-facebook"></span>
               </a>
 
-              <a class="btn btn-social-icon btn-whatsapp" href="whatsapp://send?text=720kb%20is%20enough%20http%3A%2F%2F720kb.net" target="_blank"> 
+              <a class="btn btn-social-icon btn-whatsapp" href="whatsapp://send?text=jkdfsghjkhdfjkghjkdfhgjh kjsdfhjk dksjfghjk hfgjkhjkdfgh " target="_top"> 
                   <i class="fa fa-whatsapp" aria-hidden="true"></i>
               </a>
 
-              <a class="btn btn-social-icon btn-instagram">
-                  <span class="fa fa-instagram"></span>
+              <a class="btn btn-social-icon btn-sms" href="sms:?&body={{smsShare}}" target="_top">
+                  <i class="fa fa-comment" aria-hidden="true"></i>
               </a>
               
-              <a class="btn btn-social-icon btn-twitter">
+              <a class="btn btn-social-icon btn-mail" href="{{mailShare}}" target="_top">
                   <i class="fa fa-envelope" aria-hidden="true"></i>
               </a>
-          </div> -->
+
+          </div>
 
 
           </div>
