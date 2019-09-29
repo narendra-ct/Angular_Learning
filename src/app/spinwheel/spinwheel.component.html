@@ -42,19 +42,15 @@
                   <span class="fa fa-twitter"></span>
               </a>
 
-              <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/dialog/share?
-  app_id=145634995501895
-  &display=popup
-  &href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F
-  &redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer" target="_blank">
+              <a class="btn btn-social-icon btn-facebook" (click)="didTapFacebook()">
                   <span class="fa fa-facebook"></span>
               </a>
 
-              <a class="btn btn-social-icon btn-whatsapp" href="whatsapp://send?text=jkdfsghjkhdfjkghjkdfhgjh kjsdfhjk dksjfghjk hfgjkhjkdfgh " target="_top"> 
+              <a class="btn btn-social-icon btn-whatsapp" (click)="didTapWhatsapp()"> 
                   <i class="fa fa-whatsapp" aria-hidden="true"></i>
               </a>
 
-              <a class="btn btn-social-icon btn-sms" href="sms:?&body={{smsShare}}" target="_top">
+              <a class="btn btn-social-icon btn-sms" (click)="didTapSMS()">
                   <i class="fa fa-comment" aria-hidden="true"></i>
               </a>
               

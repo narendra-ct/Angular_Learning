@@ -13,21 +13,20 @@ export class SpinwheelComponent implements OnInit {
 
 
   // sharing feature links
-  portalURL = "https://www.stg1.bosch-iero.com/retailgamecontest"
+  portalURL = "https://www.stg1.bosch-iero.com/retailgamecontest";
   // whatsappShare =  "whatsapp://send?text=720kb%20is%20enough%20http%3A%2F%2F720kb.net"
-  whatsappShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest"
-  mailShare = "mailto:?Subject=Shop With SPAR&body= Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest"
-  smsShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest"
-  twitterShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box.\n\n"
-  hashtags  = "ShopWithSpar,SparSpinAndWin"
+  whatsappShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest";
+  mailShare = "mailto:?Subject=Shop With SPAR&body= Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest";
+  smsShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest";
+  twitterShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box.";
+  hashtags  = "ShopWithSpar,SparSpinAndWin";
 
-
-  DEAL_DISCOUNT = 'discount'
-  DEAL_GIFT_BOX = 'giftbox'
-  DEAL_JACKPOT  = 'jackpot'
-  DEAL_NO_DEAL  = 'nodeal'
-  DEAL_VOUCHER  = 'voucher'
-  DEAL_OFFER    = 'offer'
+  DEAL_DISCOUNT = 'discount';
+  DEAL_GIFT_BOX = 'giftbox';
+  DEAL_JACKPOT  = 'jackpot';
+  DEAL_NO_DEAL  = 'nodeal';
+  DEAL_VOUCHER  = 'voucher';
+  DEAL_OFFER    = 'offer';
 
   selectedOffer: OfferTypes;
   data: OfferTypes[] = [
@@ -50,16 +49,38 @@ export class SpinwheelComponent implements OnInit {
     spinCollectOfferLabel:string = 'Walk to SPAR with coupon or screenshot to reedem offer at SPAR Store, VR Mall'
 
     @ViewChild('content',{read:"",static:false}) content: ElementRef;
+
     constructor(private modalService: NgbModal) { 
-
-      // this.whatsappShare = encodeURI(this.whatsappShare)
-      // console.log(this.whatsappShare)
-
-  }
+    }
 
   ngOnInit() {
     this.drawWheel();
   }
+
+  didTapSMS() {
+
+    var ua = navigator.userAgent.toLowerCase();
+    var msg = encodeURIComponent(this.smsShare)
+		if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+			window.location.href = "sms:&body=" + msg
+		} else {
+      window.location.href = "sms:?body=" + msg
+    }
+    
+  }
+
+  didTapWhatsapp() {
+
+    var msg = encodeURIComponent(this.whatsappShare)
+    window.location.href = "whatsapp://send?text=" + msg;
+
+  }
+
+  didTapFacebook(){
+    let url = "https://www.facebook.com/sharer/sharer.php?u=" + this.portalURL
+    window.open(url, "pop");
+  }
+
 
   drawWheel(){
     var padding = {top: 0, right: 16, bottom: 0, left: 16};

@@ -10,12 +10,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinwheelComponent } from './spinwheel/spinwheel.component'
 
-import { ShareModule } from '@ngx-share/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -29,8 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ShareModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
