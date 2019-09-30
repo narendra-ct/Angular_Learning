@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { OfferTypes } from '../../models/OfferTypes'
 import * as d3 from "d3";
+import * as html2canvas from 'html2canvas';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -13,11 +14,11 @@ export class SpinwheelComponent implements OnInit {
 
 
   // sharing feature links
-  portalURL = "https://www.stg1.bosch-iero.com/retailgamecontest";
+  portalURL = "https://bit.ly/2n0xrrN";
   // whatsappShare =  "whatsapp://send?text=720kb%20is%20enough%20http%3A%2F%2F720kb.net"
-  whatsappShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest";
-  mailShare = "mailto:?Subject=Shop With SPAR&body= Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest";
-  smsShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://www.stg1.bosch-iero.com/retailgamecontest";
+  whatsappShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://bit.ly/2n0xrrN";
+  mailShare = "mailto:?Subject=Shop With SPAR&body= Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://bit.ly/2n0xrrN";
+  smsShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box. https://bit.ly/2n0xrrN";
   twitterShare = "Shop with SPAR and get exciting diwali deals and vouchers. Play a Game and win exiciting deals, coupons and diwali Gift Box.";
   hashtags  = "ShopWithSpar,SparSpinAndWin";
 
@@ -48,17 +49,25 @@ export class SpinwheelComponent implements OnInit {
     spinOfferLabel:string;
     spinCollectOfferLabel:string = 'Walk to SPAR with coupon or screenshot to reedem offer at SPAR Store, VR Mall'
 
-    @ViewChild('content',{read:"",static:false}) content: ElementRef;
+    enableDownloadImage = false
+    showDownload = false
+
+  @ViewChild('content',{read:"",static:false}) content: ElementRef;
+
+  @ViewChild('capture',{read:"",static:false}) screen: ElementRef;
+  @ViewChild('canvas',{read:"",static:false}) canvas: ElementRef;
+  @ViewChild('downloadLink',{read:"",static:false}) downloadLink: ElementRef;
+
 
     constructor(private modalService: NgbModal) { 
     }
 
+    //On Init
   ngOnInit() {
     this.drawWheel();
   }
 
   didTapSMS() {
-
     var ua = navigator.userAgent.toLowerCase();
     var msg = encodeURIComponent(this.smsShare)
 		if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
@@ -70,7 +79,6 @@ export class SpinwheelComponent implements OnInit {
   }
 
   didTapWhatsapp() {
-
     var msg = encodeURIComponent(this.whatsappShare)
     window.location.href = "whatsapp://send?text=" + msg;
 
@@ -81,7 +89,20 @@ export class SpinwheelComponent implements OnInit {
     window.open(url, "pop");
   }
 
+  downloadImage(){
 
+    html2canvas(this.screen.nativeElement).then(canvas => {
+      this.canvas.nativeElement.src = canvas.toDataURL();
+      this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
+      this.downloadLink.nativeElement.download = 'spar-voucher.png';
+      this.downloadLink.nativeElement.click();
+
+      // hide 
+      this.enableDownloadImage = false
+    });
+  }
+
+  //DRAW WHEEL/SPIN
   drawWheel(){
     var padding = {top: 0, right: 16, bottom: 0, left: 16};
 
@@ -145,10 +166,13 @@ export class SpinwheelComponent implements OnInit {
               container.on("click", null);
               self.selectedOffer = null
  
+              debugger
               var  ps       = 360/self.data.length,
-                   pieslice = 10000,
-                   rng      = Math.floor((Math.random() * pieslice) + 360);
-                  
+                   pieslice = 2345,
+                   rng      = Math.floor(Math.random() * pieslice + 360);
+                   rng      = rng < 1000 ? rng * 2 : rng
+
+                   console.log(rng)
               rotation = (Math.round(rng / ps) * ps);
               
               picked = Math.round(self.data.length - (rotation % 360)/ps);
@@ -158,9 +182,12 @@ export class SpinwheelComponent implements OnInit {
               // }
 
               rotation += 90 - Math.round(ps/2);
+              
               vis.transition()
-                  .duration(4500)
+                  .delay(function(d, i) { return i * 500; })
+                  .duration(8000)
                   .attrTween("transform", rotTween)
+                  .delay(function(d, i) { return i * 5000; })
                   .on("end", function(){
                       //populate question
                       self.selectedOffer = self.data[picked];
@@ -171,7 +198,6 @@ export class SpinwheelComponent implements OnInit {
                       self.showModalOnSelectedOffer()
                   });
           }
-
           
           //make arrow
           svg.append("g")
@@ -201,7 +227,10 @@ export class SpinwheelComponent implements OnInit {
               .attr("font-size","17px");          
           
           function rotTween(to) {
+            console.log(oldrotation % 360)
+            console.log(rotation)
             var i = d3.interpolate(oldrotation % 360, rotation);
+            console.log(i)
             return function(t) {
               return "rotate(" + i(t) + ")";
             };
@@ -212,6 +241,7 @@ export class SpinwheelComponent implements OnInit {
 
   showModalOnSelectedOffer() {
 
+    this.showDownload = false
     //set content to display on modal
     if (this.selectedOffer != null) {
       switch (this.selectedOffer.dealType) {
@@ -219,31 +249,32 @@ export class SpinwheelComponent implements OnInit {
           this.spinTitle = 'Better deal yet to get'
           this.spinSubtitle = 'No deal, No worry! spin & win will be back tomorrow for you.'
           this.spinOfferLabel = 'SPAR Super Deals'
+          this.showDownload = true
           break;
         case this.DEAL_DISCOUNT:
             this.spinTitle = 'Well done!'
             this.spinSubtitle = 'You got a deal to get discount on your purchase'
-            this.spinOfferLabel = this.selectedOffer.label
+            this.spinOfferLabel = this.selectedOffer.label + "*"
           break;
         case this.DEAL_GIFT_BOX:
             this.spinTitle = 'Well done!'
             this.spinSubtitle = 'You have entered to lucky draw to get SPAR Gift Box'
-            this.spinOfferLabel = this.selectedOffer.label
+            this.spinOfferLabel = this.selectedOffer.label + "*"
           break;
         case this.DEAL_JACKPOT:
             this.spinTitle = 'Well done!'
             this.spinSubtitle = 'You have entered to lucky draw to avail SPAR JACKPOT deals'
-            this.spinOfferLabel = this.selectedOffer.label
+            this.spinOfferLabel = this.selectedOffer.label + "*"
           break;
         case this.DEAL_OFFER:
             this.spinTitle = 'Well done!'
             this.spinSubtitle = 'You won the offer! collect with your purchase'
-            this.spinOfferLabel = this.selectedOffer.label
+            this.spinOfferLabel = this.selectedOffer.label + "*"
           break;
         case this.DEAL_VOUCHER:
             this.spinTitle = 'Well done!'
             this.spinSubtitle = 'You have entered to lucky draw to get a SPAR VOUCHER'
-            this.spinOfferLabel = this.selectedOffer.label
+            this.spinOfferLabel = this.selectedOffer.label + "*"
           break;
       
         default:
@@ -255,6 +286,7 @@ export class SpinwheelComponent implements OnInit {
   }
 
   open(content) {
+    this.enableDownloadImage = true
     this.modalService.open(content, {centered: true,windowClass: 'custom-class'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

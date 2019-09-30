@@ -12,11 +12,35 @@ body{text-align:center;}
     text-align: center;
     color: green;
     font-size: 1.5rem;
-    height: 55px;
-    margin: 8px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 svg {
     display: block !important;
     margin: auto !important;
 }
+
+.topright {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+  }
+  .bottomright {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 6px;
+  }
+
+  .offerLabel {
+    text-align: center;
+    font-size: larger;
+    font-style: oblique;
+    font-weight: 700;
+    border-style: dashed;
+    border-width: 2px;
+    border-color: green;
+    color: green;
+  }

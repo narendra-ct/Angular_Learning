@@ -3,11 +3,7 @@
  <p style="text-align: center;font-weight: bold;color: green;">Spin & Win Contest!</p>
  <p style="padding: 8px;font-size: 12px;text-align: center;"><b>Instructions:</b> To play the game click on spin and win exciting deals to redeem instore</p>
 
-<div id="chart" style="margin-top: -100px;"></div>
-
-<!-- <div id="selection" *ngIf="selectedOffer.length > 0">
-  Looks like you got {{selectedOffer}}
-</div> -->
+<div #chart id="chart" style="margin-top: -100px;"></div>
 
 <ng-template #content let-modal>
     <!-- <div class="modal-header">
@@ -20,10 +16,14 @@
 
       <div class="card" style="background: blanchedalmond;">
           <div class="card-body">
-              <h5 class="card-title tilteCss" >#SparSpinAndWin</h5>
+              <span class="topright fa fa-download" (click)="downloadImage()" [hidden] = "showDownload"></span>
+            <div>
+                <h5 class="card-title tilteCss" >#SparSpinAndWin</h5>
+            </div>
+              
               <h6 class="card-subtitle mb-2" style="text-align: center;padding-bottom: 5px;">{{spinTitle}}</h6>
               <p class="card-text" style="text-align:center">{{spinSubtitle}}</p>
-              <p class="card-text" style="text-align:center;font-size: larger;font-style: oblique;font-weight: 700;">{{spinOfferLabel}} </p>
+              <p class="offerLabel" >{{spinOfferLabel}} </p>
 
               <div>
                 <p style="text-align: center"> {{spinCollectOfferLabel}}</p>
@@ -33,11 +33,11 @@
 
               <div style="text-align: center;text-decoration: underline;">
                   <img src="assets/share.png" style="vertical-align: middle;height: 20px;width: 20px;" />
-                  <span style="vertical-align:middle" (click)="didTapShare()">#ShopWithSpar</span>
+                  <span style="vertical-align:middle;padding-left: 5px;" (click)="didTapShare()">#ShopWithSpar</span>
               </div>
           </div>
 
-          <div style="display: block; margin: auto; margin-top: -10px;">
+          <div style="display: block; margin: auto; margin-top: -16px;">
               <a class="btn btn-social-icon btn-twitter" href="https://www.twitter.com/intent/tweet?url={{portalURL}}&text={{twitterShare}}&hashtags={{hashtags}}" target="_blank">
                   <span class="fa fa-twitter"></span>
               </a>
@@ -57,15 +57,66 @@
               <a class="btn btn-social-icon btn-mail" href="{{mailShare}}" target="_top">
                   <i class="fa fa-envelope" aria-hidden="true"></i>
               </a>
-
           </div>
-
-
+          
+          <span class="bottomright" > *T&C Apply</span>
+          
           </div>
         </div>
 
 
-  <div class="modal-footer">
+  <div class="modal-footer" style="height: 50px;">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
   </div>
 </ng-template>
+
+<div #capture class="modal-body" [hidden]="!enableDownloadImage"> 
+
+  <div class="card" style="background: blanchedalmond;">
+      <div class="card-body">
+          <h5 class="card-title tilteCss" >#SparSpinAndWin</h5>
+          <h6 class="card-subtitle mb-2" style="text-align: center;padding-bottom: 5px;">{{spinTitle}}</h6>
+          <p class="card-text" style="text-align:center">{{spinSubtitle}}</p>
+          <p class="offerLabel" >{{spinOfferLabel}} </p>
+
+          <div>
+            <p style="text-align: center"> {{spinCollectOfferLabel}}</p>
+          </div>
+
+          <!-- <p class="card-subtitle mb-2 text-muted"  style="text-align: center;font-size: 10px"> Tweet or Share to eligible for bounty</p>
+          <div style="text-align: center;text-decoration: underline;">
+              <img src="assets/share.png" style="vertical-align: middle;height: 20px;width: 20px;" />
+              <span style="vertical-align:middle" (click)="didTapShare()">#ShopWithSpar</span>
+          </div> -->
+      </div>
+
+      <!-- <div style="display: block; margin: auto; margin-top: -10px;">
+          <a class="btn btn-social-icon btn-twitter" href="https://www.twitter.com/intent/tweet?url={{portalURL}}&text={{twitterShare}}&hashtags={{hashtags}}" target="_blank">
+              <span class="fa fa-twitter"></span>
+          </a>
+
+          <a class="btn btn-social-icon btn-facebook" (click)="didTapFacebook()">
+              <span class="fa fa-facebook"></span>
+          </a>
+
+          <a class="btn btn-social-icon btn-whatsapp" (click)="didTapWhatsapp()"> 
+              <i class="fa fa-whatsapp" aria-hidden="true"></i>
+          </a>
+
+          <a class="btn btn-social-icon btn-sms" (click)="didTapSMS()">
+              <i class="fa fa-comment" aria-hidden="true"></i>
+          </a>
+          
+          <a class="btn btn-social-icon btn-mail" href="{{mailShare}}" target="_top">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+          </a>
+
+      </div> -->
+      <span class="bottomright" > *T&C Apply</span>
+      </div>
+  </div>
+
+<div id="download">
+  <img #canvas [hidden]="!enableDownloadImage">
+  <a #downloadLink></a>
+</div>
