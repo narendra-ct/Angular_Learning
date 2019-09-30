@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "GamificationDemo": {
+    "Gamification": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/GamificationDemo",
+            "outputPath": "dist/Gamification",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "GamificationDemo:build"
+            "browserTarget": "Gamification:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "GamificationDemo:build:production"
+              "browserTarget": "Gamification:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "GamificationDemo:build"
+            "browserTarget": "Gamification:build"
           }
         },
         "test": {
@@ -117,16 +117,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "GamificationDemo:serve"
+            "devServerTarget": "Gamification:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "GamificationDemo:serve:production"
+              "devServerTarget": "Gamification:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "GamificationDemo"
+  "defaultProject": "Gamification"
 }
