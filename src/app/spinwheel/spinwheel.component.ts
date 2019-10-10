@@ -4,6 +4,9 @@ import { OfferTypes } from '../../models/OfferTypes'
 import * as d3 from "d3";
 import * as html2canvas from 'html2canvas';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {confett } from '../confetti'
+// import { confett } from './confetti';
+import { from } from 'rxjs';
 
 
 @Component({
@@ -53,6 +56,7 @@ export class SpinwheelComponent implements OnInit {
     enableDownloadImage = false
     showDownload = false
     showAnimation = true
+    confetti;
 
   @ViewChild('content',{read:"",static:false}) content: ElementRef;
 
@@ -68,7 +72,26 @@ export class SpinwheelComponent implements OnInit {
   ngOnInit() {
     this.drawWheel();
 
+    // load confetti 
+    this.confetti = new confett.Context('confetti');
+
     // this.loadConfettiAnimation()
+
+  }
+
+  startConfettiAnimation() {
+    this.showAnimation = false
+    this.confetti.start();
+    var _this = this;
+    window.addEventListener('resize', function (event) {
+      _this.confetti.resize();
+    });
+
+  }
+
+  stopConfettiAnimation() {
+    this.showAnimation = true
+    this.confetti.stop()
   }
 
   didTapSMS() {
@@ -170,13 +193,11 @@ export class SpinwheelComponent implements OnInit {
               container.on("click", null);
               self.selectedOffer = null
  
-              debugger
               var  ps       = 360/self.data.length,
                    pieslice = 2345,
                    rng      = Math.floor(Math.random() * pieslice + 360);
                    rng      = rng < 1000 ? rng * 2 : rng
 
-                   console.log(rng)
               rotation = (Math.round(rng / ps) * ps);
               
               picked = Math.round(self.data.length - (rotation % 360)/ps);
@@ -199,13 +220,17 @@ export class SpinwheelComponent implements OnInit {
                     
                       container.on("click", spin);
 
-                      this.loadConfettiAnimation()
+                      if (self.selectedOffer.dealType != self.DEAL_NO_DEAL) {
+                        // start confetti animation
+                      self.startConfettiAnimation()
 
+                      // stop confetti animation
                       setTimeout(() => 
                       {
-                        this.showAnimation = true
                         self.showModalOnSelectedOffer()
-                      },6000);
+                      },4000);
+                    
+                    }
                   });
           }
           
@@ -237,10 +262,7 @@ export class SpinwheelComponent implements OnInit {
               .attr("font-size","17px");          
           
           function rotTween(to) {
-            console.log(oldrotation % 360)
-            console.log(rotation)
             var i = d3.interpolate(oldrotation % 360, rotation);
-            console.log(i)
             return function(t) {
               return "rotate(" + i(t) + ")";
             };
@@ -250,7 +272,7 @@ export class SpinwheelComponent implements OnInit {
 
 
   showModalOnSelectedOffer() {
-
+    this.stopConfettiAnimation()
     this.showDownload = false
     //set content to display on modal
     if (this.selectedOffer != null) {
