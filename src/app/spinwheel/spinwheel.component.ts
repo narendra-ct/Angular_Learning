@@ -225,12 +225,17 @@ export class SpinwheelComponent implements OnInit {
                       self.startConfettiAnimation()
 
                       // stop confetti animation
-                      setTimeout(() => 
-                      {
+                      setTimeout(() => {
                         self.showModalOnSelectedOffer()
                       },4000);
                     
+                    }else{
+
+                      setTimeout(() =>  {
+                        self.showModalOnSelectedOffer()
+                      },100);
                     }
+
                   });
           }
           
